@@ -1,6 +1,6 @@
 
 export default function Posts(){
     return(
-        <div>Posts</div>
+        <h1>Posts</h1>
     )
 }

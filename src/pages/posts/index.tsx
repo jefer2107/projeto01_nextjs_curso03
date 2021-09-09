@@ -1,27 +1,19 @@
-import { GetServerSideProps } from "next"
-import { useEffect, useState } from "react"
+import {  GetStaticProps } from "next"
 
 interface Posts{
     id: string
     title: string
 }
 
-interface HomeProps{
+interface PostProps{
     posts: Posts[]
 }
 
-export default function Posts({posts}: HomeProps){
-    // const [posts, setPosts] = useState<Posts[]>([])
-
-    // useEffect(()=>{
-    //     fetch("http://localhost:3333/posts")
-    //         .then(response => response.json())
-    //         .then(data => setPosts(data))
-    // },[])
+export default function Posts({posts}: PostProps){
 
     return(
         <div>
-            <h1>Posts</h1>
+            <h1>Listagem de Posts</h1>
             <ul>
                 {posts.map(post => (
                     <li key={post.id}> {post.title} </li>
@@ -32,7 +24,7 @@ export default function Posts({posts}: HomeProps){
     )
 }
 
-export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
+export const getStaticProps: GetStaticProps<PostProps> = async () => {
     const response = await fetch("http://localhost:3333/posts")
     const posts = await response.json()
 
